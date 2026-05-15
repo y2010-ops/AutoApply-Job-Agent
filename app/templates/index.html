@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AutoApply — AI Job Application Agent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+<div class="grain"></div>
+
+<header class="masthead">
+  <div class="brand">
+    <span class="logo-mark">▮▮</span>
+    <span class="logo-text">AUTOAPPLY</span>
+  </div>
+  <div class="meta">
+    <span class="meta-item">v0.1 / MVP</span>
+    <span class="meta-item">human-in-loop</span>
+    <span class="status-dot" id="statusDot"></span>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="hero">
+    <p class="kicker">[01] — The Agent</p>
+    <h1 class="title">
+      Stop writing<br>
+      <span class="title-em">the same cover letter</span><br>
+      twice.
+    </h1>
+    <p class="lede">
+      Upload your resume. Set your preferences. The agent finds matching jobs,
+      scores them against your actual profile, and drafts tailored bullets +
+      a cover letter for each. You review and apply.
+    </p>
+  </section>
+
+  <!-- Step 1: Upload -->
+  <section class="step" id="step1">
+    <div class="step-head">
+      <span class="step-num">01</span>
+      <h2>Drop your resume</h2>
+    </div>
+    <div class="upload-zone" id="dropZone">
+      <input type="file" id="resumeInput" accept="application/pdf" hidden />
+      <div class="upload-inner">
+        <div class="upload-icon">↓</div>
+        <p class="upload-label">Click or drag a PDF here</p>
+        <p class="upload-hint">Parsed locally + via LLM. Nothing is stored beyond your session.</p>
+      </div>
+    </div>
+    <div class="profile-preview" id="profilePreview" hidden></div>
+  </section>
+
+  <!-- Step 2: Preferences -->
+  <section class="step disabled" id="step2">
+    <div class="step-head">
+      <span class="step-num">02</span>
+      <h2>Tell the agent what you want</h2>
+    </div>
+    <div class="form-grid">
+      <label>
+        <span class="label">Target roles</span>
+        <input type="text" id="roles" value="AI Engineer, ML Engineer, GenAI Engineer" />
+      </label>
+      <label>
+        <span class="label">Must-have keywords</span>
+        <input type="text" id="keywords" placeholder="RAG, LangChain, LLM" value="LLM, RAG, Python" />
+      </label>
+      <label>
+        <span class="label">Location</span>
+        <input type="text" id="location" value="Remote" />
+      </label>
+      <label>
+        <span class="label">Max applications</span>
+        <input type="number" id="maxJobs" value="5" min="1" max="10" />
+      </label>
+    </div>
+    <button class="btn-primary" id="runBtn" disabled>
+      <span>Run agent</span>
+      <span class="arrow">→</span>
+    </button>
+  </section>
+
+  <!-- Step 3: Results -->
+  <section class="step disabled" id="step3">
+    <div class="step-head">
+      <span class="step-num">03</span>
+      <h2>Review &amp; apply</h2>
+    </div>
+    <div class="loading" id="loading" hidden>
+      <div class="loading-bar"></div>
+      <p class="loading-text" id="loadingText">Discovering jobs...</p>
+    </div>
+    <div class="results-summary" id="resultsSummary" hidden></div>
+    <div class="results-list" id="resultsList"></div>
+  </section>
+
+  <footer class="footer">
+    <p>Built with FastAPI · LangGraph · Groq Llama 3.3 · sentence-transformers</p>
+    <p class="footer-note">No auto-submit. No ToS violations. Your call on every apply.</p>
+  </footer>
+</main>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
