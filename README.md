@@ -1,3 +1,12 @@
+---
+title: AutoApply Job Agent
+emoji: 🤖
+colorFrom: blue
+colorTo: green
+sdk: docker
+pinned: false
+---
+
 # AutoApply Agent — MVP
 
 > Multi-agent AI system that finds matching jobs, scores them against your resume, and drafts tailored applications. **Human-in-loop apply** — no ToS violations, no auto-submit.
